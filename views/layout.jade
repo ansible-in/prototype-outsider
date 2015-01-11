@@ -1,7 +1,11 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+    title Ansible Prototype
+    link(rel='stylesheet', href='/css/style.css')
+    base(href='/')
+  body(ng-app='ansible')
     block content
+    script(src='/components/angular/angular.js')
+    script(src='/components/angular-route/angular-route.js')
+    script(src='/js/app.js')
