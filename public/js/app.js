@@ -5,6 +5,7 @@
     .config(function($routeProvider, $locationProvider) {
       $routeProvider
         .when('/join', {templateUrl: 'partial/join.html', controller: 'JoinCtrl'})
+        .when('/', {templateUrl: 'partial/chat.html', controller: 'ChatCtrl'})
         .otherwise({redirectTo: '/'});
       $locationProvider.html5Mode(true);
     })
@@ -32,6 +33,9 @@
             });
         }
       };
+    })
+    .controller('ChatCtrl', function($scope) {
+
     });
 
   // services

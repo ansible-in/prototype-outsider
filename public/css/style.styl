@@ -5,7 +5,13 @@ body
   margin: 0
   padding: 0
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
-  color: #191919;
+  color: #191919
+
+ul
+  padding-left: 0
+
+li
+  list-style: none
 
 .container
   position: absolute
@@ -35,3 +41,93 @@ body
   color: #EF4F3E
   display: block
   margin-top: 10px
+
+.main-top
+  height: 70px
+  background-color: #F2F2F2
+
+.main-area
+  border-top: 1px solid #DDDDDD
+  display: flex
+  flex-direction: row
+  height: 100%
+
+.channels
+  flex: 3
+  flex-grow: 3
+  border-right: 1px solid #DDDDDD
+  ul
+    margin-top: 0
+  .channel-title
+    color: #53A3D6
+    margin-top: 10px
+    margin-bottom: 0
+    padding-left: 7px
+    font-size: 16px
+    border-bottom: 1px solid #DDDDDD
+    font-weight: normal
+
+.channel
+  padding: 8px 5px 8px 20px
+  border-bottom: 1px solid #F2F5F6
+  color: #B8B8B8
+  position: relative
+  &:hover
+    color: #191919
+    background-color: #F2F2F2
+  &.active
+    background-color: #F2F2F2
+  .chat-counter
+    color: #52A7E1
+    border-radius: 20px
+    font-size: 10px
+    padding: 3px
+    position: absolute
+    right: 5px
+    width: 10px
+    height: 10px
+    line-height: 10px
+    margin-left: 10px
+    text-align: center
+
+.chat
+  flex: 13
+  flex-grow: 13
+  display: flex
+  flex-direction: column
+  align-self: flex-end
+  padding-left: 50px
+  padding-right: 50px
+  .message
+    padding: 5px 0 10px
+    width: 100%
+    display: flex
+  .avatar
+    width: 40px
+    height: 40px
+    border-radius: 20px
+    vertical-align: top
+    flex-grow: 0
+    flex-shrink: 0
+  .message-body
+    margin: 0
+    padding: 0 5px
+    flex-basis: auto
+    .sender
+      color: #CCCCCC
+      font-size: 12px
+    .sent-date
+      color: #CCCCCC
+      font-size: 12px
+      &:before
+        content: "\2022"
+        margin-left: 3px
+        margin-right: 5px
+    .sent-text
+      display: block
+      margin-top: 2px
+
+.users
+  flex: 2
+  flex-grow: 2
+  border-left: 1px solid #DDDDDD
