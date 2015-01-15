@@ -1,3 +1,5 @@
+header-height = 70px
+
 html
   margin: 0
   padding: 0
@@ -43,8 +45,22 @@ li
   margin-top: 10px
 
 .main-top
-  height: 70px
+  height: header-height
   background-color: #F2F2F2
+  display: flex
+  flex-direction: row
+  color: #429BD3
+  font-size: 12px
+  .header-left
+    flex: 1
+    flex-grow: 1
+    padding-left: 10px
+  .header-right
+    flex: 5
+    flex-grow: 5
+  span
+    line-height: header-height
+    vertical-align: middle
 
 .main-area
   border-top: 1px solid #DDDDDD
@@ -73,9 +89,8 @@ li
   color: #B8B8B8
   position: relative
   &:hover
-    color: #191919
-    background-color: #F2F2F2
   &.active
+    color: #191919
     background-color: #F2F2F2
   .chat-counter
     color: #52A7E1
