@@ -40,8 +40,11 @@
         }
       };
     })
-    .controller('ChatCtrl', function($scope) {
-
+    .controller('ChatCtrl', function($scope, $http) {
+      $http.get('/channels')
+        .success(function(data) {
+          $scope.servers = data;
+        });
     });
 
   // services

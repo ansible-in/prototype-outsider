@@ -6,37 +6,13 @@
 </header>
 <div class="main-area">
   <div class="channels">
-    <div class="area">
-      <h3 class="channel-title">Ansible</h3>
+    <div ng-repeat="s in servers" ng-class="{irc: s.irc, area: !s.irc}">
+      <h3 class="channel-title">
+        <span ng-if="s.irc">IRC: </span>
+        {{s.server}}
+      </h3>
       <ul>
-        <li class="channel">#general</li>
-        <li class="channel active">#monitor</li>
-        <li class="channel">#server</li>
-        <li class="channel">#client</li>
-      </ul>
-      <h3 class="channel-title">Confhub</h3>
-      <ul>
-        <li class="channel">#general</li>
-        <li class="channel">#monitor<span class="chat-counter">3</span></li>
-        <li class="channel">#server<span class="chat-counter">3</span></li>
-        <li class="channel">#client</li>
-      </ul>
-    </div>
-    <div class="irc">
-      <h3 class="channel-title">IRC: Ozinger</h3>
-      <ul>
-        <li class="channel">#codeport<span class="chat-counter">3</span></li>
-        <li class="channel">#hongminhee</li>
-        <li class="channel">#frends</li>
-      </ul>
-    </div>
-    <div class="irc">
-      <h3 class="channel-title">IRC: freenode</h3>
-      <ul>
-        <li class="channel">#javascript</li>
-        <li class="channel">#socket.io</li>
-        <li class="channel">#node.js<span class="chat-counter">3</span></li>
-        <li class="channel">#w3c</li>
+        <li class="channel" ng-repeat="c in s.channels">#{{c}}</li>
       </ul>
     </div>
   </div>
