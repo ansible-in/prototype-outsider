@@ -17,11 +17,7 @@
         $location.path('');
       }
 
-      var socket = io.connect('http://localhost:3000');
-      socket.on('news', function (data) {
-        console.log(data);
-        socket.emit('my other event', { my: 'data' });
-      });
+
     });
 
   // controllers
@@ -40,7 +36,7 @@
         }
       };
     })
-    .controller('ChatCtrl', function($scope, $http) {
+    .controller('ChatCtrl', function($scope, $http, Chat) {
       $http.get('/channels')
         .success(function(data) {
           $scope.servers = data;
@@ -48,4 +44,19 @@
     });
 
   // services
+  angular.module('ansible')
+    .factory('Chat', function() {
+      var socket = io.connect(location.origin);
+      socket.on('connect', function() {
+        console.log('connected');
+      });
+      socket.on('message', function (msg) {
+        console.log(msg);
+      });
+      return {
+        join: function() {
+
+        }
+      };
+    });
 })();

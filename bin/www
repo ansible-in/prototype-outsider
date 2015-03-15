@@ -61,3 +61,5 @@ function onError(error) {
 function onListening() {
   debug('Listening on port ' + server.address().port);
 }
+
+require('../communicate')(server);
