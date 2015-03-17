@@ -111,10 +111,10 @@ li
   display: flex
   flex-direction: column
   align-self: flex-end
-  padding-left: 50px
+  padding-left: 0
   padding-right: 50px
   .message
-    padding: 5px 0 10px
+    padding: 5px 0 10px 50px
     width: 100%
     display: flex
   .avatar
@@ -141,6 +141,14 @@ li
     .sent-text
       display: block
       margin-top: 2px
+  .writing
+    input[type=text]
+      width 90%
+      font-size 1.5rem
+      line-height 1.3
+    input[type=submit]
+      font-size 1.5rem
+      line-height 1.3
 
 .users
   flex: 2

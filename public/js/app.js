@@ -41,6 +41,11 @@
         .success(function(data) {
           $scope.servers = data;
         });
+
+      $scope.sendMsg = function() {
+        console.log($scope.text);
+
+      };
     });
 
   // services
@@ -56,6 +61,9 @@
       return {
         join: function() {
 
+        },
+        send: function(msg) {
+          socket.send(msg);
         }
       };
     });
