@@ -52,6 +52,14 @@
         </span>
       </p>
     </div>
+    <div class="message" ng-repeat="m in chatMessages">
+      <img src="https://avatars1.githubusercontent.com/u/169705?v=3&s=192" class="avatar">
+      <p class="message-body">
+        <span class="sender">{{m.from}}</span>
+        <time class="sent-date">{{m.when}}</time>
+        <span class="sent-text">{{m.text}}</span>
+      </p>
+    </div>
     <div class="writing">
       <form ng-submit="sendMsg()">
         <input type="text" ng-model="text" name="text">

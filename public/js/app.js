@@ -16,8 +16,6 @@
       } else {
         $location.path('');
       }
-
-
     });
 
   // controllers
@@ -36,27 +34,37 @@
         }
       };
     })
-    .controller('ChatCtrl', function($scope, $http, Chat) {
+    .controller('ChatCtrl', function($scope, $http, Chat, $timeout) {
+      var username = localStorage.getItem('username');
       $http.get('/channels')
         .success(function(data) {
           $scope.servers = data;
         });
 
       $scope.sendMsg = function() {
-        console.log($scope.text);
-
+        if ($scope.text !== '') {
+          Chat.send({from: username, text: $scope.text, when: new Date()});
+          $scope.text = '';
+        }
       };
+
+      $scope.chatMessages = [];
+      $scope.$on('messageReceived', function(event, msg) {
+        if (msg.text) {
+          $timeout($scope.chatMessages.push(msg));
+        }
+      })
     });
 
   // services
   angular.module('ansible')
-    .factory('Chat', function() {
+    .factory('Chat', function($rootScope) {
       var socket = io.connect(location.origin);
       socket.on('connect', function() {
         console.log('connected');
       });
       socket.on('message', function (msg) {
-        console.log(msg);
+        $rootScope.$broadcast('messageReceived', msg);
       });
       return {
         join: function() {
