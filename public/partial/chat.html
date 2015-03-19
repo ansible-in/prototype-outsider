@@ -12,7 +12,7 @@
         {{s.server}}
       </h3>
       <ul>
-        <li class="channel" ng-repeat="c in s.channels">#{{c}}</li>
+        <li class="channel" ng-repeat="c in s.channels" ng-click="joinChannel(s.server, c)">#{{c}}</li>
       </ul>
     </div>
   </div>

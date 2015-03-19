@@ -41,6 +41,10 @@
           $scope.servers = data;
         });
 
+      $scope.joinChannel = function(s, c) {
+        Chat.join({server: s, channel: c, from: username, when: new Date()});
+      }
+
       $scope.sendMsg = function() {
         if ($scope.text !== '') {
           Chat.send({from: username, text: $scope.text, when: new Date()});
@@ -63,12 +67,15 @@
       socket.on('connect', function() {
         console.log('connected');
       });
-      socket.on('message', function (msg) {
+      socket.on('message', function(msg) {
+        $rootScope.$broadcast('messageReceived', msg);
+      });
+      socket.on('joined', function(msg) {
         $rootScope.$broadcast('messageReceived', msg);
       });
       return {
-        join: function() {
-
+        join: function(msg) {
+          socket.emit('join', msg);
         },
         send: function(msg) {
           socket.send(msg);
