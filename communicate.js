@@ -7,6 +7,7 @@ module.exports = function(server) {
   io.on('connection', function (socket) {
     var currentChannel;
     socket.on('message', function (msg) {
+      socket.send(msg);
       socket.broadcast.send(msg);
     });
     socket.on('join', function (msg) {
