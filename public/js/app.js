@@ -42,12 +42,24 @@
         });
 
       $scope.joinChannel = function(s, c) {
-        Chat.join({server: s, channel: c, from: username, when: new Date()});
-      }
+        angular.forEach($scope.servers, function(s, key) {
+          angular.forEach(s.channels, function(c, key) {
+            c.active = false;
+          });
+        });
+        c.active = true;
+        if (!c.joined) {
+          c.joined = true;
+          Chat.join({server: s.server, channel: c.name, from: username, when: new Date()});
+          c.chat = [];
+        }
+        $scope.currentServer = s;
+        $scope.currentChannel = c;
+      };
 
       $scope.sendMsg = function() {
         if ($scope.text !== '') {
-          Chat.send({from: username, text: $scope.text, when: new Date()});
+          Chat.send({from: username, text: $scope.text, when: new Date(), server: $scope.currentServer.server, channel: $scope.currentChannel.name});
           $scope.text = '';
         }
       };
@@ -55,9 +67,17 @@
       $scope.chatMessages = [];
       $scope.$on('messageReceived', function(event, msg) {
         if (msg.text) {
-          $timeout($scope.chatMessages.push(msg));
+          angular.forEach($scope.servers, function(s, key) {
+            if (s.server === msg.server) {
+              angular.forEach(s.channels, function(c, key) {
+                if (c.name === msg.channel) {
+                  $timeout(c.chat.push(msg));
+                }
+              });
+            }
+          });
         }
-      })
+      });
     });
 
   // services

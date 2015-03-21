@@ -12,7 +12,7 @@
         {{s.server}}
       </h3>
       <ul>
-        <li class="channel" ng-repeat="c in s.channels" ng-click="joinChannel(s.server, c)">#{{c}}</li>
+        <li class="channel" ng-repeat="c in s.channels" ng-click="joinChannel(s, c)" ng-class="{active: c.active}">#{{c.name}}</li>
       </ul>
     </div>
   </div>
@@ -52,7 +52,7 @@
         </span>
       </p>
     </div>
-    <div class="message" ng-repeat="m in chatMessages">
+    <div class="message" ng-repeat="m in currentChannel.chat">
       <img src="https://avatars1.githubusercontent.com/u/169705?v=3&s=192" class="avatar">
       <p class="message-body">
         <span class="sender">{{m.from}}</span>
